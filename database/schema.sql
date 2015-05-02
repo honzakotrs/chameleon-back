@@ -1,0 +1,76 @@
+CREATE TABLE catch
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  catch_date DATETIME NOT NULL,
+  stop_id INT NOT NULL,
+  team_id INT NOT NULL,
+  chameleon_id VARCHAR(2) NOT NULL
+);
+CREATE TABLE game
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  title VARCHAR(50) NOT NULL,
+  start_date DATETIME NOT NULL,
+  active INT DEFAULT 0 NOT NULL
+);
+CREATE TABLE move
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  team_id INT NOT NULL,
+  move_date DATETIME NOT NULL,
+  stop_id_from INT,
+  stop_id_to INT NOT NULL,
+  stop_id_inter INT,
+  transport_type VARCHAR(1),
+  ticket_code VARCHAR(4),
+  type VARCHAR(10) DEFAULT 'UNKNOWN' NOT NULL
+);
+CREATE TABLE sms_archive
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  transmision_date DATETIME NOT NULL,
+  phone VARCHAR(9) NOT NULL,
+  msg LONGTEXT NOT NULL,
+  direction VARCHAR(3) DEFAULT 'in' NOT NULL,
+  processed TINYINT DEFAULT 0 NOT NULL
+);
+CREATE TABLE stop
+(
+  id INT PRIMARY KEY NOT NULL,
+  power INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  task TINYINT DEFAULT 0 NOT NULL,
+  task_description LONGTEXT NOT NULL,
+  task_solution VARCHAR(200) NOT NULL
+);
+CREATE TABLE task
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  completed_date DATETIME NOT NULL,
+  stop_id INT NOT NULL,
+  team_id INT NOT NULL,
+  solution VARCHAR(200) NOT NULL,
+  correct TINYINT DEFAULT 0 NOT NULL
+);
+CREATE TABLE team
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  phone VARCHAR(9) NOT NULL,
+  player_1 VARCHAR(30) NOT NULL,
+  player_2 VARCHAR(30) NOT NULL,
+  player_3 VARCHAR(30) NOT NULL,
+  score INT DEFAULT 0 NOT NULL,
+  role INT DEFAULT 0 NOT NULL,
+  active INT NOT NULL,
+  final_order INT NOT NULL,
+  final_score INT NOT NULL
+);
+CREATE TABLE ticket
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  code VARCHAR(4) NOT NULL,
+  type VARCHAR(1) DEFAULT 'O' NOT NULL
+);
+CREATE INDEX team_id ON move (team_id);
