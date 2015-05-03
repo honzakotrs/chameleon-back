@@ -15,7 +15,7 @@ class CatchHandler extends EndpointHandler {
             if (!$data) {
                 $this->returnError("No Catch with id = {$this->id}!", 400);
             }
-            $catch = Move::fromDatabase($data);
+            $catch = ChamCatch::fromDatabase($data);
 
             $this->returnJson($catch);
         } else {
@@ -32,7 +32,7 @@ class CatchHandler extends EndpointHandler {
 
             $catchesList = array();
             foreach ($catches as $m) {
-                $catchesList[] = Move::fromDatabase($m);
+                $catchesList[] = ChamCatch::fromDatabase($m);
             }
 
             $this->returnJson($catchesList);

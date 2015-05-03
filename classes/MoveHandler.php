@@ -12,7 +12,7 @@ class MoveHandler extends EndpointHandler
     protected function get()
     {
         if ($this->id != null) {
-            $data = DatabaseHelper::queryForSingleRow("SELECT * FROM move WHERE id = {$this->id} ORDER BY move_date DESC");
+            $data = DatabaseHelper::queryForSingleRow("SELECT * FROM move WHERE id = {$this->id}");
             if (!$data) {
                 $this->returnError("No Move with id = {$this->id}!", 400);
             }
@@ -26,7 +26,8 @@ class MoveHandler extends EndpointHandler
 
             $moves = DatabaseHelper::queryForAllRows("SELECT * FROM move "
                 . "WHERE $teamCondition "
-                . "AND $ticketCodeCondition ");
+                . "AND $ticketCodeCondition "
+                . " ORDER BY move_date ASC ");
             if (!$moves) {
                 $this->returnJson(array());
             }

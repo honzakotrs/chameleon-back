@@ -6,7 +6,7 @@ class Config
         // Database settings
         DB_HOST = 'localhost',
         DB_USER = 'chameleon',
-        DB_PWD = 'replace-me-with-password',
+        DB_PWD = 'chameleon',
         DB_NAME = 'chameleon',
 
         // Platform settings
@@ -16,7 +16,7 @@ class Config
         // Portal settings
         PORTAL_SENDER_HOST = "192.168.0.100",
         PORTAL_SENDER_HOST_PORT = "8080",
-        PORTAL_SENDER_HOST_PWD = "replace-me-with-password",
+        PORTAL_SENDER_HOST_PWD = "chch",
         PORTAL_SENDER_URL = "http://%s:%s/sendsms?password=%s&phone=%s&text=%s",
         PORTAL_RECEIVER_PARAM_PHONE = "phone",
         PORTAL_RECEIVER_PARAM_TEXT = "text",
